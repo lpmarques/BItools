@@ -38,6 +38,11 @@ Specially useful for research in phylogenomics (often stalled by overwhelming am
 
 	call: `perl zblocks.pl <alignmentfile.fasta> <flanking-gap-threshold(%)> <middle-gap-threshold(#)>`
 
+###concatenator.pl
+	Concatenates all **fasta** sequence alignments in working directory that present one specified extension. Optionaly, outputs a separate file discriminating positions of all original aligments into the concatenated one (i.e. a partitions file).
+
+	call `perl concatenator.pl`
+
 
 ##Scripts for alignment composition analyses
 
