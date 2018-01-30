@@ -80,4 +80,4 @@ R function that takes as input a **phylo** format tree and the IDs to any two no
 Perl subroutine to unroot any **newick** tree given as argument.
 
 ### treeDist.pl
-Perl subroutine that returns the partition difference between two unrooted **newick** trees given as arguments. The partition difference here is the absolute number of partitions *not shared* by these trees (by default) or the same number weighted by the branch lengths that represent each partition (if option `1` is specified as a third argument). In the latter case, differences in branch lengths of partitions that *are* shared are also considered.
+Perl subroutine that returns the partition difference between two unrooted **newick** trees given as arguments. By defaulf, the partition difference here is the absolute number of partitions *not shared* by these trees (a.k.a. Penny-Hendy or Robindon-Foulds distance) or the same number weighted by the branch lengths that represent each partition, if option `1` is specified as a third argument (Kuhner-Felsenstein or branch score distance). In the latter case, differences in branch lengths of partitions that *are* shared are also considered.
