@@ -3,12 +3,12 @@
 ## Description
 
 A handful of tools developed to facilitate any generic workflow in bioinformatics.
-Specially useful for research in phylogenomics (often stalled by overwhelming amounts of DNA and gigantic trees).
+Specially useful for research in phylogenomics (often stalled by overwhelming amounts of DNA and big trees).
 
 ## Scripts for sequence processing
 
 ### multiGB2fasta.pl
-From a **multigb** file (obtained with any quick search of interest in [GenBank](https://www.ncbi.nlm.nih.gov/genbank/)), this script captures only the coding section (CDS) for each sequence and outputs them into a simpified **fasta** (multisequence file format) for each gene found. These fasta files keep info like species name and accession number for each sequence in the database.
+From a *multigb* file (obtained with any quick search of interest in [GenBank](https://www.ncbi.nlm.nih.gov/genbank/)), this script captures only the coding section (CDS) for each sequence and outputs them into a simpified *fasta* (multisequence file format) for each gene found. These fasta files keep info like species name and accession number for each sequence in the database.
 Aditionally, the script automatically filters CDSs by their size, so that each fasta includes only the longest CDS for each species it represents, maximizing data utilization for phylogenetics.
 
 call: `perl multiGB2fasta.pl <multigbfile.gb>`
@@ -19,7 +19,7 @@ Provided a multisequence file in **fasta** format and a **txt** file containing 
 call: `perl seqSelector.pl <sequencefile.fasta> <patternlist.txt>`
 
 ### fasta2phylip-vv.pl
-Here '-vv' stands for vice-versa. This script simply converts any sequence alignment in **fasta** or **sequential phylip** format to the other one. Specific format extensions (like *.fasta* or *.phy) must not be a concern, since fasta2phylip-vv identifies the file format by its content (the same is true to all other scripts in BItools);
+Here '-vv' stands for vice-versa. This script simply converts any sequence alignment in **fasta** or **sequential phylip** format to the other one. Specific format extensions (like *.fasta* or *.phy*) must not be a concern, since fasta2phylip-vv identifies the file format by its content (the same is true to all other scripts in BItools);
 
 call: `perl fasta2phylip-vv.pl <alignmentfile.[fasta|phy]>`
 
@@ -66,6 +66,15 @@ Like basereader.pl but returns in-site proportions for all sites across the sequ
 
 call: `perl basereader.pl <alignmentfile.[fasta|phy]`
 
+### codontools.c
+C mini-library for codon-to-aminoacid convertions. Includes the following functions:
+`char* RNAtoAA(char *codon)` translates input RNA codon string to corresponding aminoacid string;
+`char** AAtoRNA(char *amino, int *ncodons)` does the reverse. Provided a capitalized, underline separated (if composite) aminoacid name (e.g. 'Glutamic_acid') and an int pointer, it returns an array of strings containing all RNA codons that such AA could have been translated from and assign its length to the pointer given;
+`char** synonyms(char *codon, int *ncodons)` returns the array of codons that are synonym to a user-provided one. It assigns the length of such array to a given int pointer as well.
+
+usage: Add the line `#include "codontools.h"` to your main source code and make sure to place *codontools.c*, *codontools.h*, [*utilslib.c* and *utilslib.h*](https://github.com/lpmarques/Ccustoms-lib) in the directory where you intend to compile it. Finally, include codontools.c and utilslib.c when compiling your main code (e.g. `gcc -o my_exec my_main.c codontools.c utilslib.c`).
+
+
 ## Scripts for automated tree analyses
 
 ### treelength.pl
@@ -80,4 +89,4 @@ R function that takes as input a **phylo** format tree and the IDs to any two no
 Perl subroutine to unroot any **newick** tree given as argument.
 
 ### treeDist.pl
-Perl subroutine that returns the partition difference between two unrooted **newick** trees given as arguments. By defaulf, the partition difference here is the absolute number of partitions *not shared* by these trees (a.k.a. Penny-Hendy or Robinson-Foulds distance) or the same number weighted by the branch lengths that represent each partition, if option `1` is specified as a third argument (Kuhner-Felsenstein or 'branch score' distance). In the latter case, differences in branch lengths of partitions that *are* shared are also considered.
+Perl subroutine that returns the partition difference between two unrooted **newick** trees given as arguments. By defaulf, the partition difference here is the absolute number of partitions *not shared* by these trees (a.k.a. Penny-Hendy or Robinson-Foulds distance) or the same number weighted by the branch lengths that represent each partition if option `1` is specified as a third argument (Kuhner-Felsenstein or 'branch score' distance). In the latter case, differences in branch lengths of partitions that *are* shared are also considered.
