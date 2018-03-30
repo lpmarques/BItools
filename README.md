@@ -1,9 +1,10 @@
-# BItools Library
+# BItools
 
 ## Description
 
-A handful of tools developed to facilitate any generic workflow in bioinformatics.
+A handful of tools developed to facilitate any workflow in bioinformatics.
 Specially useful for research in phylogenomics (often stalled by overwhelming amounts of DNA and big trees).
+
 
 ## Scripts for sequence processing
 
@@ -67,12 +68,28 @@ Like basereader.pl but returns in-site proportions for all sites across the sequ
 call: `perl basereader.pl <alignmentfile.[fasta|phy]`
 
 ### codontools.c
-C mini-library for codon-to-aminoacid convertions. Includes the following functions:
-* `char* RNAtoAA(char *codon)` translates input RNA codon string to corresponding aminoacid string;
-* `char** AAtoRNA(char *amino, int *ncodons)` does the reverse. Provided a capitalized, underline separated (if composite) aminoacid name (e.g. 'Glutamic_acid') and an int pointer, it returns an array of strings containing all RNA codons that such AA could have been translated from and assign its length to the pointer given;
-* `char** synonyms(char *codon, int *ncodons)` returns the array of codons that are synonymous to a user-provided one. It assigns the length of such array to a given int pointer as well.
+C functions for codon-to-aminoacid convertions.
 
-usage: Add the line `#include "codontools.h"` to your main source code and make sure to place **codontools.c**, **codontools.h**, [**utilslib.c** and **utilslib.h**](https://github.com/lpmarques/Ccustoms-lib) in the directory where you intend to compile it. Finally, include codontools.c and utilslib.c when compiling your main code (e.g. `gcc -o my_exec my_main.c codontools.c utilslib.c`).
+####Usage:
+Add the line `#include "codontools.h"` to the headers of your main source code and make sure to place **codontools.c**, **codontools.h**, [**utilslib.c** and **utilslib.h**](https://github.com/lpmarques/Ccustoms-lib) files in the directory where you intend to compile the source code. Then, include codontools.c and utilslib.c when compiling (e.g. `gcc -o my_exec my_main.c codontools.c utilslib.c`).
+
+####RNAtoAA()
+
+prototype: `char* RNAtoAA(char *codon);`
+
+Translates input RNA codon string to corresponding aminoacid string.
+
+####AAtoRNA()
+
+prototype: `char** AAtoRNA(char *amino, int *ncodons);`
+
+Does the reverse of RNAtoAA(). Provided a pointer to a capitalized, underline separated (if composite) aminoacid name (e.g. 'Glutamic_acid'), it returns the pointer to an array of strings containing all RNA codons that such AA could have been translated from. It also assigns the length of this array of codons to a user-given int pointer.
+
+####synonyms()
+
+prototype: `char** synonyms(char *codon, int *ncodons);`
+
+Returns the array of codons that are synonymous to a user-provided one. It assigns the length of such array to a given int pointer as well.
 
 
 ## Scripts for automated tree analyses
