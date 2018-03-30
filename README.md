@@ -71,7 +71,7 @@ call: `perl basereader.pl <alignmentfile.[fasta|phy]`
 C functions for codon-to-aminoacid convertions.
 
 #### Usage:
-Add the line `#include "codontools.h"` to the headers of your main source code and make sure to place **codontools.c**, **codontools.h**, [**utilslib.c** and **utilslib.h**](https://github.com/lpmarques/Ccustoms-lib) files in the directory where you intend to compile the source code. Then, include codontools.c and utilslib.c when compiling (e.g. `gcc -o my_exec my_main.c codontools.c utilslib.c`).
+Add the line `#include "codontools.h"` to the headers of your main source code and make sure to place **codontools.c**, **codontools.h**, [**utilslib.c** and **utilslib.h**](https://github.com/lpmarques/Ccustoms) files in the directory where you intend to compile the source code. Then, include codontools.c and utilslib.c when compiling (e.g. `gcc -o my_exec my_main.c codontools.c utilslib.c`).
 
 #### RNAtoAA()
 
