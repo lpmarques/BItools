@@ -70,22 +70,22 @@ call: `perl basereader.pl <alignmentfile.[fasta|phy]`
 ### codontools.c
 C functions for codon-to-aminoacid convertions.
 
-####Usage:
+#### Usage:
 Add the line `#include "codontools.h"` to the headers of your main source code and make sure to place **codontools.c**, **codontools.h**, [**utilslib.c** and **utilslib.h**](https://github.com/lpmarques/Ccustoms-lib) files in the directory where you intend to compile the source code. Then, include codontools.c and utilslib.c when compiling (e.g. `gcc -o my_exec my_main.c codontools.c utilslib.c`).
 
-####RNAtoAA()
+#### RNAtoAA()
 
 prototype: `char* RNAtoAA(char *codon);`
 
 Translates input RNA codon string to corresponding aminoacid string.
 
-####AAtoRNA()
+#### AAtoRNA()
 
 prototype: `char** AAtoRNA(char *amino, int *ncodons);`
 
 Does the reverse of RNAtoAA(). Provided a pointer to a capitalized, underline separated (if composite) aminoacid name (e.g. 'Glutamic_acid'), it returns the pointer to an array of strings containing all RNA codons that such AA could have been translated from. It also assigns the length of this array of codons to a user-given int pointer.
 
-####synonyms()
+#### synonyms()
 
 prototype: `char** synonyms(char *codon, int *ncodons);`
 
